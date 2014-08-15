@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <title>OneNG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script type="text/javascript" src="./ext/require.js" data-main="src/app.js"></script>
+    <link href="./ext/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="page-header">
+        <h1>OneNG <small>OneJS and Angular, happily ever after</small></h1>
+      </div>
+
+      <div ng-controller="HelloController as ctrl">
+        <h2 class="page-header">Pure Angular</h2>
+        <div class="row">
+          <div class="col-md-6">
+            <input type="text" ng-model="ctrl.email" />
+          </div>
+          <div class="col-md-6">
+            Email<br /> <pre>{{ctrl.email}}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div ng-controller="AvatarController as ctrl">
+        <h2 class="page-header">Mixed mode</h2>
+        <div class="row">
+          <div class="col-md-6">
+            <input type="text" ng-model="ctrl.address" />
+          </div>
+          <div class="col-md-6">
+            Address<br /> <pre>{{ctrl.address}}</pre>
+          </div>
+        </div>
+	<onejs-control onejs-control-name="OneAvatar" ng-model="ctrl" />
+      </div>
+    </div>
+  </body>
+</html>

@@ -4,7 +4,7 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", 'OneAvatarModel', 'View', 'DomUtils', 'OneAvatar.css'], function(require, exports, OneAvatarModel, View, DomUtils, OneAvatarcss) {
+define(["require", "exports", './OneAvatarModel', './View', './DomUtils', './OneAvatar.css'], function(require, exports, OneAvatarModel, View, DomUtils, OneAvatarcss) {
     DomUtils.loadStyles(OneAvatarcss.styles);
 
     var OneAvatar = (function (_super) {

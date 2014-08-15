@@ -4,7 +4,7 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-define(["require", "exports", 'ViewModel', 'md5'], function(require, exports, ViewModel, MD5) {
+define(["require", "exports", './ViewModel', './md5'], function(require, exports, ViewModel, MD5) {
     var OneAvatarModel = (function (_super) {
         __extends(OneAvatarModel, _super);
         function OneAvatarModel() {
@@ -18,9 +18,11 @@ define(["require", "exports", 'ViewModel', 'md5'], function(require, exports, Vi
         }
         OneAvatarModel.prototype.setData = function (data, shouldFireChange) {
             if (data && data.address) {
+		this.address = data.address;
                 this.data.address = data.address;
                 var hash = (new MD5()).md5(data.address);
                 this.data.src = "http://www.gravatar.com/avatar/" + hash + "?s=" + this.data.size;
+		this.src = this.data.src;
                 this.change();
             }
             _super.prototype.setData.call(this, data, shouldFireChange);

@@ -1,4 +1,4 @@
-define(["require", "exports", 'ViewModel', 'EventGroup', 'Encode', 'DomUtils'], function(require, exports, ViewModel, EventGroup, Encode, DomUtils) {
+define(["require", "exports", './ViewModel', './EventGroup', './Encode', './DomUtils'], function(require, exports, ViewModel, EventGroup, Encode, DomUtils) {
     var ViewState;
     (function (ViewState) {
         ViewState[ViewState["CREATED"] = 0] = "CREATED";
