@@ -13,30 +13,86 @@
         <h1>OneNG <small>OneJS and Angular, happily ever after</small></h1>
       </div>
 
-      <div ng-controller="HelloController as ctrl">
-        <h2 class="page-header">Pure Angular</h2>
-        <div class="row">
-          <div class="col-md-6">
-            <input type="text" ng-model="ctrl.email" />
+      <div class="row">
+        <div ng-controller="HelloController as ctrl" class="col-md-6">
+          <h2 class="page-header">Pure Angular</h2>
+
+          <p>Just a simple one-way binding. Nothing special.</p>
+          <div class="row">
+            <div class="col-md-6">
+              <input type="text" ng-model="ctrl.email" />
+            </div>
+            <div class="col-md-6">
+              &laquo;<em>{{ctrl.email}}</em>&raquo;
+            </div>
           </div>
-          <div class="col-md-6">
-            Email<br /> <pre>{{ctrl.email}}</pre>
+        </div>
+
+        <div ng-controller="AvatarController as ctrl" class="col-md-6">
+          <h2 class="page-header">Mixed mode</h2>
+
+          <p>Something rather more interesting.</p>
+          <div class="row">
+            <div class="col-md-6">
+
+              <div class="form-group">
+                <label for="email-field">Email</label>
+                <input type="text" id="email-field" ng-model="ctrl.address">
+                <p class="help-block">Example: jdhuntington@gmail.com (uses gravatar.com)</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <onejs-control onejs-control-name="OneAvatar" ng-model="ctrl" />
+            </div>
           </div>
+
         </div>
       </div>
 
-      <div ng-controller="AvatarController as ctrl">
-        <h2 class="page-header">Mixed mode</h2>
-        <div class="row">
-          <div class="col-md-6">
-            <input type="text" ng-model="ctrl.address" />
-          </div>
-          <div class="col-md-6">
-            Address<br /> <pre>{{ctrl.address}}</pre>
-          </div>
-        </div>
-	<onejs-control onejs-control-name="OneAvatar" ng-model="ctrl" />
+      <h2>What makes this work?</h2>
+
+      <h3>The markup</h3>
+
+      <p>Have a look at the source. You'll see <code>&lt;onejs-control onejs-control-name="OneAvatar" ng-model="ctrl" /&gt;</code> in the markup. Simple as that.</p>
+
+
+      <h3>OneJS</h3>
+
+      <p>A OneJS control prototype. Out of the box.</p>
+
+      <h3>Angular directive</h3>
+
+      <pre><code>
+function onejsControl() {
+    return {
+        restrict: 'E',
+        require: '^ngModel',
+        scope: {
+            ngModel: '='
+        },
+        template: '&lt;div;&gt&lt;/div&gt',
+        link: function(scope, el, attr) {
+		var oneControl = new OneAvatar();
+		el.html(oneControl.renderHtml());
+		oneControl.activate();
+
+		scope.$watch('ngModel.address', function(val) {
+		    oneControl.setData({ address: val });
+		});
+        }
+    }
+}
+</code></pre>
+
+      <p>You'll notice that the angular directive cheats in exactly 2 ways. 1, it explicitly news up <code>OneAvatar</code> instead of the control name that was passed in. A first-class solution would use angular's dependency injection here. 2, it watches <code>address</code> explicitly, but this is easily generalizable using angular's notification facilities.</p>
+
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <p class="text-muted">Now reticulating splines...</p>
       </div>
     </div>
+
   </body>
 </html>

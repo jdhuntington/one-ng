@@ -13,7 +13,7 @@ define(["require", "exports", './ViewModel', './md5'], function(require, exports
                 src: "#",
                 className: "c-oneavatar",
                 address: "uninitialized value",
-                size: 400
+                size: 200
             };
         }
         OneAvatarModel.prototype.setData = function (data, shouldFireChange) {
