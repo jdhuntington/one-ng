@@ -70,22 +70,21 @@ function onejsControl() {
         scope: {
             ngModel: '='
         },
-        template: '&lt;div;&gt&lt;/div&gt',
+        template: '&lt;div&gt;&lt;/div&gt;',
         link: function(scope, el, attr) {
-		var oneControl = new OneAvatar();
-		el.html(oneControl.renderHtml());
-		oneControl.activate();
-
-		scope.$watch('ngModel.address', function(val) {
-		    oneControl.setData({ address: val });
-		});
+		var controlName = attr.onejsControlName;
+            require(['ext/' + controlName + '/' + controlName], function(Control) {
+                var oneControl = new Control();
+                el.html(oneControl.renderHtml());
+                oneControl.activate();
+                scope.$watch('ngModel', function(model) {
+                    oneControl.setData(model);
+                }, true);
+            });
         }
     }
 }
 </code></pre>
-
-      <p>You'll notice that the angular directive cheats in exactly 2 ways. 1, it explicitly news up <code>OneAvatar</code> instead of the control name that was passed in. A first-class solution would use angular's dependency injection here. 2, it watches <code>address</code> explicitly, but this is easily generalizable using angular's notification facilities.</p>
-
     </div>
 
     <div class="footer">

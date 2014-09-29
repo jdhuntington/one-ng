@@ -4,7 +4,7 @@ requirejs.config({
     }
 });
 
-require(['ext/ng/angular', 'ext/oneavatar/OneAvatar'], function(dontcare, OneAvatar) {
+require(['ext/ng/angular'], function(dontcare) {
     angular.module('MyApp', []);
 
     angular.module('MyApp').controller('HelloController', HelloController);
@@ -37,13 +37,15 @@ require(['ext/ng/angular', 'ext/oneavatar/OneAvatar'], function(dontcare, OneAva
             },
             template: '<div></div>',
             link: function(scope, el, attr) {
-		var oneControl = new OneAvatar();
-		el.html(oneControl.renderHtml());
-		oneControl.activate();
-
-		scope.$watch('ngModel.address', function(val) {
-		    oneControl.setData({ address: val });
-		});
+		var controlName = attr.onejsControlName;
+                require(['ext/' + controlName + '/' + controlName], function(Control) {
+                    var oneControl = new Control();
+                    el.html(oneControl.renderHtml());
+                    oneControl.activate();
+                    scope.$watch('ngModel', function(model) {
+                        oneControl.setData(model);
+                    }, true);
+                });
             }
         }
     }
