@@ -37,15 +37,21 @@
 
               <div class="form-group">
                 <label for="email-field">Email</label>
-                <input type="text" id="email-field" ng-model="ctrl.address">
+                <input type="text" id="email-field" ng-model="user.address">
                 <p class="help-block">Example: jdhuntington@gmail.com (uses gravatar.com)</p>
               </div>
             </div>
             <div class="col-md-6">
-              <onejs-control onejs-control-name="OneAvatar" ng-model="ctrl" />
+              <onejs-control onejs-control-name="OneAvatar" ng-model="user" />
             </div>
           </div>
 
+	  <div class="row">
+            <div class="col-md-12">
+	      <h4>Raw <code>user</code> object:</h4>
+	      <pre>{{user|json}}</pre>
+	    </div>
+	  </div>
         </div>
       </div>
 
@@ -53,7 +59,7 @@
 
       <h3>The markup</h3>
 
-      <p>Have a look at the source. You'll see <code>&lt;onejs-control onejs-control-name="OneAvatar" ng-model="ctrl" /&gt;</code> in the markup. Simple as that.</p>
+      <p>Have a look at the source. You'll see <code>&lt;onejs-control onejs-control-name="OneAvatar" ng-model="user" /&gt;</code> in the markup. Simple as that.</p>
 
 
       <h3>OneJS</h3>
