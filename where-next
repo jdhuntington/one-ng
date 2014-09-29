@@ -1,0 +1,3 @@
+* Update OneAvatar to most recent style, update ext directory
+* Build a OneJS control with a repeater, use it to host ng content
+* Bind out of OneJS back to angular
