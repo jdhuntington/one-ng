@@ -17,7 +17,7 @@ define(["require", "exports", './OneAvatarModel', '../onejs/View', '../onejs/Dom
                 {
                     "id": "0",
                     "attr": {
-                        "src": "src",
+                        "src": "_src",
                         "class": "className"
                     }
                 }

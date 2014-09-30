@@ -9,7 +9,7 @@ define(["require", "exports", '../onejs/ViewModel', './md5'], function(require, 
         __extends(OneAvatarModel, _super);
         function OneAvatarModel() {
             _super.apply(this, arguments);
-            this.src = "#";
+            this._src = "#";
             this.className = "c-oneavatar";
             this.address = "uninitialized value";
             this.size = 400;
@@ -18,7 +18,7 @@ define(["require", "exports", '../onejs/ViewModel', './md5'], function(require, 
             if (data && data.address) {
                 this.address = data.address;
                 var hash = (new MD5()).md5(data.address);
-                this.src = "http://www.gravatar.com/avatar/" + hash + "?s=" + this.size;
+                this._src = "http://www.gravatar.com/avatar/" + hash + "?s=" + this.size;
                 this.change();
             }
             _super.prototype.setData.call(this, data, shouldFireChange);

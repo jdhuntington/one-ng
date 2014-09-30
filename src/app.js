@@ -11,7 +11,9 @@ require(['ext/ng/angular'], function(dontcare) {
 
     angular.module('MyApp').controller('AvatarController', AvatarController);
 
-    angular.module('MyApp').directive('onejsControl', onejsControl);
+    angular.module('MyApp').controller('DummyController', DummyController);
+
+    angular.module('MyApp').directive('onejsControl', ['$timeout', onejsControl]);
 
     angular.bootstrap(document, ['MyApp']);
 
@@ -20,19 +22,28 @@ require(['ext/ng/angular'], function(dontcare) {
     }
 
     function AvatarController() {
-	// nop
+
     }
 
-    function onejsControl() {
+    function DummyController($scope) {
+        var vm = this;
+
+        vm.test = { 'a': "B" };
+        vm.other = { foo: 'bar' };
+    }
+
+    function onejsControl($timeout) {
         return {
             restrict: 'E',
             require: '^ngModel',
             scope: {
-                ngModel: '='
+                ngModel: '=',
+                outbound: '='
             },
             template: '<div></div>',
             link: function(scope, el, attr) {
-		var controlName = attr.onejsControlName;
+                scope.ngModel = {};
+                var controlName = attr.onejsControlName;
                 require(['ext/onejs/' + controlName + '/' + controlName], function(Control) {
                     var oneControl = new Control();
                     el.append(oneControl.render());
@@ -40,6 +51,18 @@ require(['ext/ng/angular'], function(dontcare) {
                     scope.$watch('ngModel', function(model) {
                         oneControl.setData(model);
                     }, true);
+
+                    oneControl.events.on(oneControl._viewModel, 'change', function() {
+                        $timeout(function() {
+                            for(var key in oneControl._viewModel) {
+                                if(key[0] !== '_' && oneControl._viewModel.hasOwnProperty(key)) {
+				    console.log("Changing '" + key + "' to: " + oneControl._viewModel[key]);
+                                    scope.ngModel[key] = oneControl._viewModel[key];
+                                }
+                            }
+                        });
+                    });
+
                 });
             }
         }

@@ -95,6 +95,30 @@ function onejsControl() {
     }
 }
 </code></pre>
+
+      <div ng-controller="DummyController as ctrl">
+	<div class="row">
+	  <div class="col-md-12">
+	    <h1>One last demo...</h1>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="col-md-9">
+	    <div>
+              <onejs-control onejs-control-name="dummy" ng-model="ctrl.model" />
+	    </div>
+	    
+	    <h4><code>model</code> object</h4>
+	    
+	  <pre>{{ctrl.model|json}}</pre>
+	  </div>
+
+	  <div class="col-md-3">
+	    <input type="text" ng-model="ctrl.model.exampleMessage" />
+            <p class="help-block">Good old fashioned angular binding</p>
+	  </div>
+	</div>
+
     </div>
 
     <div class="footer">
