@@ -35,7 +35,7 @@ require(['ext/ng/angular'], function(dontcare) {
 		var controlName = attr.onejsControlName;
                 require(['ext/onejs/' + controlName + '/' + controlName], function(Control) {
                     var oneControl = new Control();
-                    el.html(oneControl.renderHtml());
+                    el.append(oneControl.render());
                     oneControl.activate();
                     scope.$watch('ngModel', function(model) {
                         oneControl.setData(model);
