@@ -33,7 +33,7 @@ require(['ext/ng/angular'], function(dontcare) {
             template: '<div></div>',
             link: function(scope, el, attr) {
 		var controlName = attr.onejsControlName;
-                require(['ext/' + controlName + '/' + controlName], function(Control) {
+                require(['ext/onejs/' + controlName + '/' + controlName], function(Control) {
                     var oneControl = new Control();
                     el.html(oneControl.renderHtml());
                     oneControl.activate();
