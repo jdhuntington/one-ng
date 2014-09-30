@@ -56,7 +56,6 @@ require(['ext/ng/angular'], function(dontcare) {
                         $timeout(function() {
                             for(var key in oneControl._viewModel) {
                                 if(key[0] !== '_' && oneControl._viewModel.hasOwnProperty(key)) {
-				    console.log("Changing '" + key + "' to: " + oneControl._viewModel[key]);
                                     scope.ngModel[key] = oneControl._viewModel[key];
                                 }
                             }
