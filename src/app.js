@@ -20,12 +20,7 @@ require(['ext/ng/angular'], function(dontcare) {
     }
 
     function AvatarController() {
-        var c = this;
-        c.doStuff = doStuff;
-
-        function doStuff() {
-            alert("doing stuff.");
-        }
+	// nop
     }
 
     function onejsControl() {

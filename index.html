@@ -19,17 +19,21 @@
 
           <p>Just a simple one-way binding. Nothing special.</p>
           <div class="row">
-            <div class="col-md-6">
-              <input type="text" ng-model="ctrl.email" />
+            <div class="col-md-12">
+              <input type="text" ng-model="dumbuser.email" />
             </div>
-            <div class="col-md-6">
-              &laquo;<em>{{ctrl.email}}</em>&raquo;
-            </div>
-          </div>
+	  </div>
+	  
+	  <div class="row">
+            <div class="col-md-12">
+	      <h4>Raw <code>dumbuser</code> object:</h4>
+	      <pre>{{dumbuser|json}}</pre>
+	    </div>
+	  </div>
         </div>
-
+	
         <div ng-controller="AvatarController as ctrl" class="col-md-6">
-          <h2 class="page-header">Mixed mode</h2>
+          <h2 class="page-header">Pure Awesome</h2>
 
           <p>Something rather more interesting.</p>
           <div class="row">
